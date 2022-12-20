@@ -15,14 +15,21 @@
     "strict": true,
     "strictNullChecks": true,
     "noImplicitAny": false,
+    "resolveJsonModule": true,
     "strictBindCallApply": false,
     "strictPropertyInitialization": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@domain/*": ["./src/domain/*"],
-      "@infra/*": ["./src/infra/*"],
-      "@tests/*": ["./src/tests/*"]
+      "@domain/*": [
+        "./src/domain/*"
+      ],
+      "@infra/*": [
+        "./src/infra/*"
+      ],
+      "@tests/*": [
+        "./tests/*"
+      ]
     }
   }
 }

@@ -1,5 +1,4 @@
-import { Notification } from "../domain/entities/notification"
-import { SendNotification } from "../domain/use-cases/send-notification"
+import { SendNotification } from "@domain/use-cases/send-notification"
 import { InMemoryNotificationRepository } from "./repositories/in-memory-notifications-repository"
 
 describe('SendNotification', () => {
