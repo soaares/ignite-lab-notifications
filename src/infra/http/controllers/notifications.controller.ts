@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { Notification } from 'src/domain/entities/notification';
-import { SendNotification } from 'src/domain/use-cases/send-notification';
+import { Notification } from '@domain/entities/notification';
+import { SendNotification } from '@domain/use-cases/send-notification';
 import { CreateNotificationBody } from '../dtos/create-notification-body';
 
 @Controller()
