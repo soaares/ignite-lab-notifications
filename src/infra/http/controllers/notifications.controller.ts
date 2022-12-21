@@ -4,13 +4,15 @@ import { CreateNotificationBody } from '../dtos/create-notification-body';
 import { NotificationViewModel } from '../view-models/notification-view-model';
 import { CancelNotification } from '@domain/use-cases/cancel-notification';
 import { ReadNotification } from '@domain/use-cases/read-notification';
+import { UnreadNotification } from '@domain/use-cases/unread-notification';
 
 @Controller()
 export class NotificationsController {
   constructor(
     private sendNotification: SendNotification,
     private cancelNotification: CancelNotification,
-    private readNotification: ReadNotification
+    private readNotification: ReadNotification,
+    private unreadNotification: UnreadNotification
   ) { }
 
   @Patch(':id/cancel')
@@ -27,7 +29,10 @@ export class NotificationsController {
     await this.readNotification.execute({ notificationId })
   }
 
-  async unread() { }
+  @Patch(':id/unread')
+  async unread(@Param('id') notificationId: string) {
+    await this.unreadNotification.execute({ notificationId })
+  }
 
   @Post('notifications')
   async create(@Body() body: CreateNotificationBody) {
