@@ -1,5 +1,3 @@
-import { Content } from "@domain/entities/content"
-import { Notification } from '@domain/entities/notification'
 import { makeNotification } from "./factories/notification-factory"
 
 describe('Notification', () => {
