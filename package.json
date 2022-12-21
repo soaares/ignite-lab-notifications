@@ -1,10 +1,10 @@
 {
   "name": "notifications",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "A microservice that should help you to send notifications for every system that it connects to",
+  "author": "Raphael Soares raphael.soaresit@gmail.com",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
