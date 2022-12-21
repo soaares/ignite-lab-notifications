@@ -3,23 +3,37 @@ import { NotificationNotFound } from "@domain/use-cases/errors/notification-not-
 import { makeNotification } from "./factories/notification-factory"
 import { InMemoryNotificationRepository } from "./repositories/in-memory-notifications-repository"
 
+type SutTypes = {
+    sut: CancelNotification
+    notificationsRepository: InMemoryNotificationRepository
+}
+
+const makeSut = (): SutTypes => {
+    const notificationsRepository = new InMemoryNotificationRepository()
+    const sut = new CancelNotification(notificationsRepository);
+
+    return {
+        sut,
+        notificationsRepository
+    }
+}
+
 describe('CancelNotification', () => {
     it('should be able to cancel notification', async () => {
-        const notificationsRepository = new InMemoryNotificationRepository()
-        const cancelNotification = new CancelNotification(notificationsRepository);
+        const { sut, notificationsRepository } = makeSut()
 
         const notification = makeNotification()
         await notificationsRepository.create(notification)
-        await cancelNotification.execute({ notificationId: notification.id })
+        await sut.execute({ notificationId: notification.id })
 
         expect(notificationsRepository.notifications[0].canceledAt).toEqual(expect.any(Date))
     })
 
     it('should not be able to cancel a non existing notification', async () => {
         const notificationsRepository = new InMemoryNotificationRepository();
-        const cancelNotification = new CancelNotification(notificationsRepository)
+        const sut = new CancelNotification(notificationsRepository)
 
-        const promise = cancelNotification.execute({ notificationId: 'fake-notification-id' })
+        const promise = sut.execute({ notificationId: 'fake-notification-id' })
 
         await expect(promise).rejects.toThrowError(NotificationNotFound)
     })
