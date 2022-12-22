@@ -3,14 +3,15 @@ import { Notification } from "@domain/entities/notification";
 import { Content } from "@domain/entities/content";
 
 export class PrismaNotificationMapper {
-    static toPrisma({ id, content, category, recipientId, readAt, createdAt }: Notification) {
+    static toPrisma({ id, content, category, recipientId, readAt, createdAt, canceledAt }: Notification) {
         return {
             id,
             content: content.value,
             category,
             recipient_id: recipientId,
             read_at: readAt,
-            created_at: createdAt
+            created_at: createdAt,
+            canceled_at: canceledAt
         }
     }
 
